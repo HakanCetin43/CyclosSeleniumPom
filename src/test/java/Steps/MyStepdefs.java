@@ -11,7 +11,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static Pages.LogInPage.*;
+import static Pages.TransferDetailsPage.confirmPaymentSuccessfull;
 import static Pages.WelcomePage.*;
+import static Pages.PayUserPage.*;
+import static Pages.ReviewPaymentPage.*;
 
 public class MyStepdefs {
 
@@ -64,5 +67,46 @@ public class MyStepdefs {
     @Then("the user views errorMessage {string}")
     public void theUserViewsErrorMessage(String expectedErrorMessage) {
         viewsErrorMessage(wait, expectedErrorMessage);
+    }
+
+    @And("the user selects {string} from contact")
+    public void theUserSelectsFromContact(String arg0) throws InterruptedException {
+        selectPayee(wait);
+
+    }
+
+    @And("the user clicks pay user")
+    public void theUserClicksPayUser() {
+        goToPayUser(wait);
+    }
+
+    @And("the user clicks Contact")
+    public void theUserClicksContact() {
+        clickContact(wait);
+    }
+
+    @And("the user enters {string} to amount area")
+    public void theUserEntersToAmountArea(String amount) {
+        enterAmountToPay(wait, amount);
+    }
+
+    @And("the user types {string} to description")
+    public void theUserTypesToDescription(String description) {
+       // typeDescription(wait, description);
+    }
+
+    @And("the user clicks submit")
+    public void theUserClicksSubmit() {
+        clickSubmit(wait);
+    }
+
+    @And("the user clicks confirm")
+    public void theUserClicksConfirm() {
+        confirmPayment(wait);
+    }
+
+    @Then("the user views {string} on transfer page")
+    public void theUserViewsOnTransferPage(String expectedMessage) {
+        confirmPaymentSuccessfull(wait, expectedMessage);
     }
 }

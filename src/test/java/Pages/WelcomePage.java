@@ -18,4 +18,10 @@ public class WelcomePage {
         assertEquals(expectedMessage, actualMessage);
 
     }
+
+    public static void goToPayUser(WebDriverWait wait){
+        element= wait.until(ExpectedConditions.
+                visibilityOfElementLocated(By.xpath("//div[text()='Pay user']")));
+        element.click();
+    }
 }
