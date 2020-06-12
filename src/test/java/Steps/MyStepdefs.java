@@ -6,6 +6,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -71,7 +74,7 @@ public class MyStepdefs {
 
     @And("the user selects {string} from contact")
     public void theUserSelectsFromContact(String arg0) throws InterruptedException {
-        selectPayee(wait);
+        selectPayee(wait, driver);
 
     }
 
@@ -92,7 +95,7 @@ public class MyStepdefs {
 
     @And("the user types {string} to description")
     public void theUserTypesToDescription(String description) {
-       // typeDescription(wait, description);
+        typeDescription(wait, description);
     }
 
     @And("the user clicks submit")
@@ -108,5 +111,37 @@ public class MyStepdefs {
     @Then("the user views {string} on transfer page")
     public void theUserViewsOnTransferPage(String expectedMessage) {
         confirmPaymentSuccessfull(wait, expectedMessage);
+    }
+
+    @RunWith(Cucumber.class)
+    @CucumberOptions(
+            features = "src/test/resources",
+            glue = "Steps",
+            tags = {"@Happy"},
+            plugin = {"pretty",
+                    "html:report/cucumber",
+                    "json:report/cucumber.json"
+            },
+            dryRun = false,
+            strict = false,
+            monochrome = true
+
+
+    )
+
+    //@RunWith(Cucumber.class)
+    //@CucumberOptions(
+    //        plugin = {
+    //                "pretty",
+    //                "html:target/default-cucumber-reports",
+    //                "junit:target/cucumber.xml"
+    //        },
+    //        features = {"src/test/resources/"},
+    //        glue = { "steps"},
+    //        //glue = {"src/test/java/steps"},
+    //        dryRun = false,
+    //        tags = {""}
+    //)
+    public static class RunCucumber {
     }
 }

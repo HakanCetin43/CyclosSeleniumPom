@@ -11,7 +11,7 @@ public class TransferDetailsPage {
 
     public static void confirmPaymentSuccessfull(WebDriverWait wait, String expectedMessage) {
         element = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//div[@class='notificationText notificationText-singleLine']")));
+                .visibilityOfElementLocated(By.xpath("//div[@class='notificationText notificationText-singleLine' and text()='The payment was successful']")));
         String actualMessage = element.getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
