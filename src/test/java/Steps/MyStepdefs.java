@@ -27,7 +27,7 @@ public class MyStepdefs {
 
     @Before
     public void driverSetUp() {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "D:/Drivers/chromedriver .exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
     }
@@ -39,12 +39,14 @@ public class MyStepdefs {
 
     @Given("the user navigates to {string}")
     public void theUserNavigatesTo(String url) {
+
         navigate(driver, url);
     }
 
 
     @When("the user enters username {string}")
     public void theUserEntersUsername(String username) {
+
         enterUsername(wait, username);
     }
 
@@ -69,6 +71,7 @@ public class MyStepdefs {
 
     @Then("the user views errorMessage {string}")
     public void theUserViewsErrorMessage(String expectedErrorMessage) {
+
         viewsErrorMessage(wait, expectedErrorMessage);
     }
 
